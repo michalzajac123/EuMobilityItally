@@ -1,5 +1,8 @@
 import Logo from "../assets/Images/EuMobilityNavbarLogo.png";
 import SocialIcons from "./SocialIcons";
+import { FaPhone, FaMapPin } from "react-icons/fa";
+import { IoMdMail } from "react-icons/io";
+
 export default function FooterView() {
   return (
     <div className=" flex justify-between  mx-auto mt-10">
@@ -20,15 +23,21 @@ export default function FooterView() {
         </h3>
         <div className="contact-info mb-6 space-y-3 flex flex-col items-center sm:items-start">
           <div className="flex items-center gap-2">
-            <span className="text-white/80">📧</span>
+            <span className="text-white/80">
+              <IoMdMail />
+            </span>
             <p className="text-white text-bold">test@gmailc.om</p>
           </div>
           <div className="flex items-center gap-2">
-            <span className="text-white/80">📞</span>
+            <span className="text-white/80">
+              <FaPhone />
+            </span>
             <p className="text-white text-bold">123456789</p>
           </div>
           <div className="flex items-center gap-2">
-            <span className="text-white/80">📍</span>
+            <span className="text-white/80">
+              <FaMapPin />
+            </span>
             <p className="text-white text-bold">Geuna, Italy</p>
           </div>
         </div>
