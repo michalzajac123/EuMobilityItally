@@ -1,3 +1,10 @@
+import HeroView from "./HeroView/HeroView.jsx";
+import PastProjectsView from "./PastProjectsView/PastProjectsView.jsx";
 export function Component() {
-    return <h2>main</h2>
+    return (
+        <div>
+            <HeroView />
+            <PastProjectsView />
+        </div>
+    )
 }
