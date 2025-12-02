@@ -5,6 +5,9 @@
   --green-dark-color: #004d26;
   --white-color: #ffffff;
   --red-color: #cd212a;
+  --black-color: #101828;
+  --green-text-color: #20b486;
+  --green-text-hover: #27a87f;
 }
 * {
   font-family: "inter", sans-serif;
