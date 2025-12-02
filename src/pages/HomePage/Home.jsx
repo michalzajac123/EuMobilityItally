@@ -1,3 +1,9 @@
+import HeroView from "./HeroView/HeroView";
+
 export function Component() {
-    return <h2>main</h2>
+  return (
+    <div>
+      <HeroView />
+    </div>
+  );
 }

@@ -6,7 +6,7 @@ const NavbarView = () => {
   const [open, setOpen] = useState(false);
 
   return (
-    <nav className="fixed w-full top-0 left-0 z-20 bg-[var(--white-color)] shadow-sm">
+    <nav className="w-full top-0 left-0 z-20 bg-[var(--white-color)] shadow-sm">
       <div className="max-w-6xl mx-auto flex items-center justify-between px-4 py-3">
         {/* Logo */}
         <Link to="/" className="flex items-center">
@@ -42,7 +42,7 @@ const NavbarView = () => {
         {/* Menu */}
         <ul
           className={`
-            flex text-[var(--black-color)] font-medium md:items-center
+            flex text-[var(--black-color)] font-semiBold md:items-center
 
             md:flex-row md:static md:opacity-100 md:max-h-none
             flex-col absolute left-0 right-0 top-16
@@ -63,7 +63,7 @@ const NavbarView = () => {
             </Link>
           </li>
           <li>
-            <Link to="/about">About us</Link>
+            <Link to="/about" className="font-medium">About us</Link>
           </li>
           <li>
             <Link to="/pastProjects">Past projects</Link>
