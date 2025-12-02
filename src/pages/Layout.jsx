@@ -1,5 +1,5 @@
 import { Outlet } from "react-router-dom";
-
+import FooterView from "../components/FooterView"
 export function Component() {
   return (
     <div>
@@ -7,6 +7,9 @@ export function Component() {
       <main>
         <Outlet />
       </main>
+      <footer>
+        <FooterView></FooterView>
+      </footer>
     </div>
   );
 }
