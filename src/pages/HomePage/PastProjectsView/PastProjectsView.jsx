@@ -29,7 +29,7 @@ export default function PastProjectsView() {
                 <div className="text-2xl mt-2 mb-4">Past Projects</div>
                 <div className="font-thin  text-[#667085] mb-6">Lets find out our last projects and become part of us</div>
             </div>
-            <div className="flex">
+            <div className="flex md:flex-row flex-col justify-center items-center">
                 {projects.map((project, index) => (
                     <div key={index} className="m-4">
                         <PastProjectCard 
