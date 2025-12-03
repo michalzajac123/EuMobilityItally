@@ -8,6 +8,8 @@
   --black-color: #101828;
   --green-text-color: #20b486;
   --green-text-hover: #27a87f;
+  --gray-text-color: #667085;
+  --gray-bg-color: #F9FAFB;
 }
 * {
   font-family: "inter", sans-serif;

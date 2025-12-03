@@ -1,6 +1,6 @@
 export default function PastProjectCard(props) {
   return (
-    <div className="card shadow-md hover:shadow-xl rounded-xl overflow-hidden bg-white transition-all duration-300 hover:-translate-y-2 max-w-sm">
+    <div className="shadow-md hover:shadow-xl rounded-xl overflow-hidden bg-white transition-all duration-300 hover:-translate-y-2 max-w-sm">
       <div className="img-container relative overflow-hidden group">
         <img
           className="w-full h-56 object-cover transition-transform duration-300 group-hover:scale-110"
