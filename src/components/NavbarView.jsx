@@ -1,8 +1,12 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import euMobilityLogo from "../assets/Images/euMobilityNavbarLogo.png";
-
 const NavbarView = () => {
+  const navigate = useNavigate();
+  const handleContactClick = () => {
+    navigate("/contact");
+  };
+
   const [open, setOpen] = useState(false);
 
   return (
@@ -63,7 +67,9 @@ const NavbarView = () => {
             </Link>
           </li>
           <li>
-            <Link to="/about" className="font-medium">About us</Link>
+            <Link to="/about" className="font-medium">
+              About us
+            </Link>
           </li>
           <li>
             <Link to="/pastProjects">Past projects</Link>
@@ -72,7 +78,10 @@ const NavbarView = () => {
             <Link to="/faqs">FAQ's</Link>
           </li>
 
-          <button className="rounded-lg cursor-pointer uppercase font-medium bg-[var(--green-text-color)] hover:bg-[var(--green-text-hover)] text-[var(--white-color)] px-4 py-2 hidden md:block ml-4 transition">
+          <button
+            onClick={() => handleContactClick()}
+            className="rounded-lg cursor-pointer uppercase font-medium bg-[var(--green-text-color)] hover:bg-[var(--green-text-hover)] text-[var(--white-color)] px-4 py-2 hidden md:block ml-4 transition"
+          >
             Contact
           </button>
         </ul>

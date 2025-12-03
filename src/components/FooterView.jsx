@@ -37,7 +37,7 @@ export default function FooterView() {
           </div>
         </div>
         <div className="social-media flex flex-col sm:flex-row items-center justify-between pt-4 border-t border-white/30">
-          <SocialIcons />
+          <SocialIcons backgroundColor="var(--red-color)" />
           <div>
             <p className="text-white block md:hidden text-sm mt-2">
               © 2024 EU Mobility Italy. All rights reserved.

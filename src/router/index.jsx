@@ -9,6 +9,10 @@ export const router = createBrowserRouter([
         index: true,
         lazy: () => import("../pages/HomePage/Home"),
       },
+      {
+        path: "contact",
+        lazy: () => import("../pages/ContactPage/ContactView"),
+      },
     ],
   },
 ]);
