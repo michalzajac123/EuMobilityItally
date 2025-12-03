@@ -32,7 +32,7 @@ export function Component() {
   ];
 
   return (
-    <section className="px-6 bg-white py-16 md:py-24 bg-[var(--gray-bg-color)]">
+    <section className="px-6 bg-white py-12 md:py-14 bg-[var(--gray-bg-color)]">
       <div className="max-w-4xl mx-auto text-center">
         <h2 className="text-3xl md:text-4xl font-bold text-[var(--black-color)] leading-tight">
           Frequently Asked Questions

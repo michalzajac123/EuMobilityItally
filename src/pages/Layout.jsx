@@ -5,7 +5,7 @@ export function Component() {
   return (
     <div>
       <NavbarView />
-      <main className="pt-24">
+      <main className="pt-14 sm:pt-16 md:pt-18">
         <Outlet />
       </main>
       <footer>
