@@ -75,7 +75,7 @@ const NavbarView = () => {
             <Link to="/pastProjects">Past projects</Link>
           </li>
           <li>
-            <Link to="/faqs">FAQ's</Link>
+            <Link to="/faq">FAQ's</Link>
           </li>
 
           <button
