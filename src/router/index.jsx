@@ -7,20 +7,20 @@ export const router = createBrowserRouter([
     children: [
       {
         index: true,
-        lazy: () => import("../pages/HomePage/Home"),
+        lazy: () => import("../pages/HomePage/Home.jsx"),
       },
       {
         path: "contact",
-        lazy: () => import("../pages/ContactPage/ContactView"),
+        lazy: () => import("../pages/ContactPage/ContactView.jsx"),
       },
       {
         path: "faq",
-        lazy: () => import("../pages/FAQPage/FAQView"),
+        lazy: () => import("../pages/FAQPage/FAQView.jsx"),
       },
       {
         path: "accommodation",
-        lazy: () => import("../pages/Accommodation/AccommodationView")
-      }
+        lazy: () => import("../pages/Accommodation/AccommodationView.jsx"),
+      },
     ],
   },
 ]);
