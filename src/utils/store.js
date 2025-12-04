@@ -15,7 +15,6 @@ export default async function fetchPosts() {
     console.error("Error fetching posts:", error);
   }
 }
-<<<<<<< HEAD
 
 export async function fetchHotels({ setHotels, setLoading }) {
   const { data, error } = await supabase.from("hotels").select("*");
@@ -26,5 +25,3 @@ export async function fetchHotels({ setHotels, setLoading }) {
   setHotels(data);
   setLoading(false);
 }
-=======
->>>>>>> 83b789981c212cf5b4c8b821c5f7d534da9300a0
