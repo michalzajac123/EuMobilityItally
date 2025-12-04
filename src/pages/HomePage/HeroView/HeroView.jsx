@@ -1,6 +1,19 @@
 import heroImage from "../../../assets/Images/heroImage.png";
-
+import bilig from "../../../assets/Images/sponsorImage/billig.png";
+import ceraminAndMe from "../../../assets/Images/sponsorImage/ceraminAndMe.png";
+import ichaMochi from "../../../assets/Images/sponsorImage/ichaMochi.jpg";
+import forenom from "../../../assets/Images/sponsorImage/forenom.png";
+import bazar from "../../../assets/Images/sponsorImage/bazar.png";
+import erasmus from "../../../assets/Images/sponsorImage/erasmus.png";
 const HeroView = () => {
+  const sponsorsList = [
+    { name: "Erasmus+", logo: erasmus },
+    { name: "Bilig", logo: bilig },
+    { name: "CeraminAndMe", logo: ceraminAndMe },
+    { name: "IchaMochi", logo: ichaMochi },
+    { name: "Forenom", logo: forenom },
+    { name: "Bazar", logo: bazar },
+  ]
   return (
     <section className="w-full bg-white">
       <div className="mx-auto flex max-w-6xl flex-col items-center px-4 py-16 md:flex-row md:justify-between">
@@ -34,9 +47,7 @@ const HeroView = () => {
             skills, make global connections, and grow your future abroad.
           </p>
 
-          <button className="mt-6 w-fit self-center md:self-start rounded-lg bg-[var(--green-text-color)] px-6 py-3 font-semibold text-white hover:bg-[var(--green-text-hover)] cursor-pointer transition">
-            Get Started
-          </button>
+       
         </div>
 
         {/* Prawa kolumna – znika na telefonach */}
@@ -48,6 +59,22 @@ const HeroView = () => {
               className="w-full aspect-square object-cover"
             />
           </div>
+        </div>
+      </div>
+      <div className="hidden lg:flex mx-auto max-w-6xl px-4 pb-16">
+        <div className="flex items-center justify-start gap-8 flex-wrap w-full">
+          <button className="rounded-lg bg-[var(--green-text-color)] px-6 py-3 font-semibold text-white hover:bg-[var(--green-text-hover)] cursor-pointer transition whitespace-nowrap">
+            Check all sponsors
+          </button>
+          {sponsorsList.map((sponsor, index) => (
+            <div key={index}>
+              <img
+                src={sponsor.logo}
+                alt={sponsor.name}
+                className="h-12 object-contain"
+              />
+            </div>
+          ))}
         </div>
       </div>
     </section>
