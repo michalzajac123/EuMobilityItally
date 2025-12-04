@@ -4,14 +4,14 @@ import CroatiaFlag from "../../../assets/Images/countryImage/CroatiaFlag.jpg";
 import ItalyFlag from "../../../assets/Images/countryImage/ItalyFlag.png";
 import SwedenFlag from "../../../assets/Images/countryImage/SwedenFlag.jpg";
 
-import fetchPosts from "./store";
-import { useEffect} from "react";
+import fetchPosts from "../../../utils/store";
+import { useEffect,useState } from "react";
 export default function PastProjectsView() {
-  
+  const [posts, setPosts] = useState([]);
   useEffect(() => {
     async function loadPosts() {
       const posts = await fetchPosts();
-      console.log("Loaded posts in PastProjectsView:", posts);
+      setPosts(posts || []);
     }
     loadPosts();
   }, []);
@@ -26,15 +26,15 @@ export default function PastProjectsView() {
           </div>
         </div>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 justify-items-center">
-          {/* {projects.map((project, index) => (
+          {posts.map((project, index) => (
             <div key={index} className="w-full max-w-sm">
               <PastProjectCard
-                countryName={project.countryName}
-                description={project.description}
-                imgSrc={project.imgSrc}
+                countryName={project.title}
+                description={project.body}
+                imgSrc={project.images[0]}
               />
             </div>
-          ))} */}
+          ))}
         </div>
       </div>
     </div>
