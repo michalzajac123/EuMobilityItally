@@ -37,7 +37,7 @@ export const router = createBrowserRouter([
     children: [
       {
         index: true,
-        lazy: () => import("../pages/AdminPanel/PanelView.jsx"),
+        lazy: () => import("../pages/AdminPanel/PanelView/PanelView.jsx"),
       },
       {
         path: "login",

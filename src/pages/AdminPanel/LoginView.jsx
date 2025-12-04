@@ -1,5 +1,5 @@
 import React from "react";
 
-export function Component() {
+export default function Component() {
   return <div>LoginView</div>;
 }
