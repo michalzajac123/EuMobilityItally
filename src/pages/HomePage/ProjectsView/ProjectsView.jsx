@@ -1,4 +1,4 @@
-import PastProjectCard from "./ProjectCard";
+import ProjectCard from "./ProjectCard.jsx";
 import fetchPosts from "../../../utils/store";
 import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
@@ -21,9 +21,9 @@ export default function PastProjectsView() {
     loadPosts();
   }, []);
   return (
-    <div id="projects-section" className="w-full bg-white">
+    <div className="w-full bg-white">
       <div className="mx-auto max-w-6xl px-4 py-16 text-sm font-bold">
-        <div className="header-container justify-around flex flex-col text-center md:text-left">
+        <div id="project-section" className="header-container justify-around flex flex-col text-center md:text-left">
           <div className="text-[#20b486] mb-2">Explore our last projects</div>
           <div className="text-2xl mt-2 mb-4">Projects</div>
           <div className="font-thin text-[#667085] mb-6">
@@ -33,7 +33,7 @@ export default function PastProjectsView() {
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 justify-items-center">
           {posts.map((project, index) => (
             <div key={index} className="w-full max-w-sm">
-              <PastProjectCard project={project} handleClick={handleClick} />
+              <ProjectCard project={project} handleClick={handleClick} />
             </div>
           ))}
         </div>

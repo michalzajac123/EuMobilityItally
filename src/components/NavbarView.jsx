@@ -1,12 +1,23 @@
 import { useState } from "react";
-import { NavLink, Link, useNavigate } from "react-router-dom";
+import { NavLink, Link, useNavigate, useLocation } from "react-router-dom";
 import { handleNavigateClick } from "../utils/handleNavigateClick";
 import euMobilityLogo from "../assets/Images/euMobilityNavbarLogo.png";
 
 const NavbarView = () => {
   const navigate = useNavigate();
+  const location = useLocation();
   const [open, setOpen] = useState(false);
-
+  const handleClick = () => {
+    if (location.pathname === "/") {
+      const projectsSection = document.getElementById("projects-section");
+      if (projectsSection) {
+        projectsSection.scrollIntoView({ behavior: "smooth", block: "start" });
+      }
+    } else {
+      navigate("/", { state: { scrollTo: "projects" } });
+    }
+    setOpen(false);
+  };
   return (
     <nav className="w-full fixed top-0 left-0 z-20 bg-[var(--white-color)]">
       <div className="max-w-6xl mx-auto flex items-center justify-between px-4 py-3">
@@ -55,30 +66,32 @@ const NavbarView = () => {
             px-6 py-4 md:p-0 gap-6 md:gap-8
           `}
         >
-          {["/", "/about", "/accommodation", "/pastProjects", "/faq"].map(
-            (path, i) => (
-              <li key={i}>
-                <NavLink
-                  to={path}
-                  className={({ isActive }) =>
-                    isActive
-                      ? "text-[var(--green-text-color)] font-medium transition"
-                      : "font-medium hover:text-[var(--green-text-color)] transition"
-                  }
-                >
-                  {
-                    [
-                      "Home",
-                      "About us",
-                      "Accommodation",
-                      "Past projects",
-                      "FAQ's",
-                    ][i]
-                  }
-                </NavLink>
-              </li>
-            )
-          )}
+          <li>
+            <Link
+              to="/"
+              className="text-[var(--green-text-color)] font-semibold"
+            >
+              Home
+            </Link>
+          </li>
+          <li>
+            <Link to="/about" className="font-medium">
+              About us
+            </Link>
+          </li>
+          <li>
+            <Link to="/accommodation" className="font-medium">
+              Accommodation
+            </Link>
+          </li>
+          <li>
+            <button onClick={handleClick} className="font-medium cursor-pointer">
+              Projects
+            </button>
+          </li>
+          <li>
+            <Link to="/faq">FAQ's</Link>
+          </li>
 
           <button
             onClick={() => handleNavigateClick(navigate, "/contact")}

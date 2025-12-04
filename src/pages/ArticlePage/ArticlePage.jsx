@@ -1,5 +1,5 @@
 import { useLocation, useNavigate } from "react-router-dom";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 export default function Component() {
   const location = useLocation();
@@ -7,9 +7,9 @@ export default function Component() {
   const data = location.state;
   const [selectedImage, setSelectedImage] = useState(null);
 
-  console.log("ArticlePage loaded!");
-  console.log("Article data:", data);
-
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
   if (!data) {
     return (
       <div className="min-h-screen flex items-center justify-center">
@@ -40,7 +40,7 @@ export default function Component() {
           <img
             src={data.images[0]}
             alt={data.title}
-            className="w-full h-100 object-cover object-[center_90%] rounded-xl mb-8"
+            className="w-full h-100 object-cover  rounded-xl mb-8"
           />
         )}
 

@@ -1,9 +1,11 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 export function Component() {
   const [openIndex, setOpenIndex] = useState(null);
   const toggle = (i) => setOpenIndex(openIndex === i ? null : i);
-
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
   const faqs = [
     {
       q: "What is EUB Mobility and Erasmus+?",

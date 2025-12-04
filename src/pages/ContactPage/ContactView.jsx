@@ -1,7 +1,12 @@
 import ContactForm from "./ContactForm";
 import ContactDetails from "./ContactDetails";
-
+import { useEffect } from "react";
 export function Component() {
+  
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   return (
     <div className="min-h-screen bg-white w-full flex justify-center items-center bg-[#F7FAFF] p-6">
       <div className="bg-white shadow-[0_10px_40px_rgba(0,0,0,0.08)] rounded-2xl w-full max-w-6xl p-12">
