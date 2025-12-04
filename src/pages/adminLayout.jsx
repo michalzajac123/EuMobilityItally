@@ -1,6 +1,6 @@
 import { Outlet } from "react-router-dom";
 
-export function Component() {
+function AdminLayout() {
   return (
     <div>
       <main>
@@ -9,3 +9,5 @@ export function Component() {
     </div>
   );
 }
+export { AdminLayout as Component };
+export default AdminLayout;
