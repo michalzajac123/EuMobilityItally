@@ -1,4 +1,4 @@
-const GoogleMap = ({ location, zoom = 16 }) => {
+const GoogleMap = ({ location, zoom = 16, setLoaded }) => {
   const url = `https://www.google.com/maps?q=${encodeURIComponent(
     location
   )}&z=${zoom}&output=embed`;
@@ -12,6 +12,7 @@ const GoogleMap = ({ location, zoom = 16 }) => {
         style={{ border: 0 }}
         loading="lazy"
         src={url}
+        onLoad={() => setLoaded(true)}
         allowFullScreen
         referrerPolicy="no-referrer-when-downgrade"
       ></iframe>
