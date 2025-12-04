@@ -85,7 +85,9 @@ const NavbarView = () => {
             </Link>
           </li>
           <li>
-            <Link to="/pastProjects">Past projects</Link>
+            <button onClick={handleClick} className="font-medium cursor-pointer">
+              Projects
+            </button>
           </li>
           <li>
             <Link to="/faq">FAQ's</Link>
