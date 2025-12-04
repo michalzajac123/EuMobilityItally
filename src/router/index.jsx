@@ -13,6 +13,10 @@ export const router = createBrowserRouter([
         path: "contact",
         lazy: () => import("../pages/ContactPage/ContactView"),
       },
+      {
+        path: "faq",
+        lazy: () => import("../pages/FAQPage/FAQView"),
+      }
     ],
   },
 ]);

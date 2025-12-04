@@ -3,7 +3,7 @@ import ContactDetails from "./ContactDetails";
 
 export function Component() {
   return (
-    <div className="min-h-screen w-full flex justify-center items-center bg-[#F7FAFF] p-6">
+    <div className="min-h-screen bg-white w-full flex justify-center items-center bg-[#F7FAFF] p-6">
       <div className="bg-white shadow-[0_10px_40px_rgba(0,0,0,0.08)] rounded-2xl w-full max-w-6xl p-12">
         <div className="w-full flex justify-center mb-10">
           <h2 className="text-[var(--green-text-color)] text-2xl font-bold tracking-[3px] relative">

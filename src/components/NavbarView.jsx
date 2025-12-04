@@ -10,7 +10,7 @@ const NavbarView = () => {
   const [open, setOpen] = useState(false);
 
   return (
-    <nav className="w-full top-0 left-0 z-20 bg-[var(--white-color)] shadow-sm">
+    <nav className="w-full fixed top-0 left-0 z-20 bg-[var(--white-color)]">
       <div className="max-w-6xl mx-auto flex items-center justify-between px-4 py-3">
         {/* Logo */}
         <Link to="/" className="flex items-center">
@@ -75,7 +75,7 @@ const NavbarView = () => {
             <Link to="/pastProjects">Past projects</Link>
           </li>
           <li>
-            <Link to="/faqs">FAQ's</Link>
+            <Link to="/faq">FAQ's</Link>
           </li>
 
           <button
