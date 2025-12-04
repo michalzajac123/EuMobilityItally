@@ -1,13 +1,18 @@
 import PastProjectCard from "./PastProjectCard";
-import PolandFlag from "../../../assets/Images/countryImage/PolandFlag.png";
-import CroatiaFlag from "../../../assets/Images/countryImage/CroatiaFlag.jpg";
-import ItalyFlag from "../../../assets/Images/countryImage/ItalyFlag.png";
-import SwedenFlag from "../../../assets/Images/countryImage/SwedenFlag.jpg";
-
 import fetchPosts from "../../../utils/store";
-import { useEffect,useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react";
+
 export default function PastProjectsView() {
   const [posts, setPosts] = useState([]);
+
+  const navigate = useNavigate();
+
+  const handleClick = (post) => {
+    console.log("Navigating to article with post:", post);
+    navigate(`/article`, { state: post });
+  };
+
   useEffect(() => {
     async function loadPosts() {
       const posts = await fetchPosts();
@@ -28,11 +33,7 @@ export default function PastProjectsView() {
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 justify-items-center">
           {posts.map((project, index) => (
             <div key={index} className="w-full max-w-sm">
-              <PastProjectCard
-                countryName={project.title}
-                description={project.body}
-                imgSrc={project.images[0]}
-              />
+              <PastProjectCard project={project} handleClick={handleClick} />
             </div>
           ))}
         </div>

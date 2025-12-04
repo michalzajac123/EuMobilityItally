@@ -1,4 +1,5 @@
 import { createBrowserRouter } from "react-router-dom";
+import ArticlePage from "../pages/ArticlePage/ArticlePage";
 
 export const router = createBrowserRouter([
   {
@@ -19,8 +20,12 @@ export const router = createBrowserRouter([
       },
       {
         path: "accommodation",
-        lazy: () => import("../pages/Accommodation/AccommodationView")
-      }
+        lazy: () => import("../pages/Accommodation/AccommodationView"),
+      },
+      {
+        path: "article",
+        element: <ArticlePage />,
+      },
     ],
   },
 ]);
