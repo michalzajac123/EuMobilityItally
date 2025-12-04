@@ -1,13 +1,20 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { handleNavigateClick } from "../../utils/handleNavigateClick";
+import { fetchHotels } from "../../utils/store";
+import HotelCard from "../../pages/Accommodation/HotelCard";
 
 export function Component() {
   const navigate = useNavigate();
+  const [hotels, setHotels] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    fetchHotels({ setHotels, setLoading });
+  }, []);
 
   return (
     <div className="py-12 md:py-14 px-6 max-w-6xl mx-auto">
-      {/* HERO */}
       <section className="text-center mb-16">
         <h1 className="text-3xl md:text-4xl leading-tight font-bold text-gray-900">
           Comfortable{" "}
@@ -21,36 +28,22 @@ export function Component() {
         </p>
       </section>
 
-      {/* HOTEL CARDS */}
-      <section className="grid md:grid-cols-3 gap-8 mb-20">
-        {[1, 2, 3].map((i) => (
-          <div
-            key={i}
-            className="rounded-xl shadow-lg overflow-hidden hover:scale-[1.02] transition"
-          >
-            <img
-              src={`/hotel${i}.jpg`}
-              alt=""
-              className="h-48 w-full object-cover"
-            />
-            <div className="p-5">
-              <h3 className="text-xl font-semibold text-gray-800">
-                Hotel Example {i}
-              </h3>
-              <p className="text-gray-600 mt-2">
-                Close to project location, Wi-Fi, breakfast included, shared
-                rooms available.
-              </p>
-            </div>
-          </div>
-        ))}
-      </section>
+      {loading ? (
+        <p className="text-center text-gray-500">Loading hotels...</p>
+      ) : hotels.length === 0 ? (
+        <p className="text-center text-gray-500">No hotels found.</p>
+      ) : (
+        <section className="grid md:grid-cols-3 gap-8 mb-20">
+          {hotels.map((hotel) => (
+            <HotelCard key={hotel.id} hotel={hotel} />
+          ))}
+        </section>
+      )}
 
-      {/* CTA */}
       <div className="text-center mt-10">
         <button
           onClick={() => handleNavigateClick(navigate, "/contact")}
-          className="px-6 cursor-pointer py-3 bg-[var(--green-text-color)] text-white rounded-lg font-medium hover:[var(--green-text-hover)]"
+          className="px-6 cursor-pointer py-3 bg-[var(--green-text-color)] hover:opacity-90 text-white rounded-lg font-medium transition"
         >
           Contact us for more details
         </button>
