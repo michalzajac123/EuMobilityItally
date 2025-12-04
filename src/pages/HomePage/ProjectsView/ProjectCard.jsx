@@ -1,4 +1,4 @@
-export default function PastProjectCard({ project, handleClick }) {
+export default function ProjectCard({ project, handleClick }) {
   return (
     <div className="shadow-md hover:shadow-xl rounded-xl overflow-hidden bg-white transition-all duration-300 hover:-translate-y-2 max-w-sm">
       <div className="img-container relative overflow-hidden group">

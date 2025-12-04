@@ -1,11 +1,23 @@
 import { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 import { handleNavigateClick } from "../utils/handleNavigateClick";
 import euMobilityLogo from "../assets/Images/euMobilityNavbarLogo.png";
+
 const NavbarView = () => {
   const navigate = useNavigate();
+  const location = useLocation();
   const [open, setOpen] = useState(false);
-
+  const handleClick = () => {
+    if (location.pathname === "/") {
+      const projectsSection = document.getElementById("projects-section");
+      if (projectsSection) {
+        projectsSection.scrollIntoView({ behavior: "smooth", block: "start" });
+      }
+    } else {
+      navigate("/", { state: { scrollTo: "projects" } });
+    }
+    setOpen(false);
+  };
   return (
     <nav className="w-full fixed top-0 left-0 z-20 bg-[var(--white-color)]">
       <div className="max-w-6xl mx-auto flex items-center justify-between px-4 py-3">
@@ -74,7 +86,9 @@ const NavbarView = () => {
             </Link>
           </li>
           <li>
-            <Link to="/pastProjects">Past projects</Link>
+            <button onClick={handleClick} className="font-medium cursor-pointer">
+              Projects
+            </button>
           </li>
           <li>
             <Link to="/faq">FAQ's</Link>
