@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Link, useNavigate, useLocation } from "react-router-dom";
+import { NavLink, Link, useNavigate, useLocation } from "react-router-dom";
 import { handleNavigateClick } from "../utils/handleNavigateClick";
 import euMobilityLogo from "../assets/Images/euMobilityNavbarLogo.png";
 
@@ -56,7 +56,6 @@ const NavbarView = () => {
         <ul
           className={`
             flex text-[var(--black-color)] font-semiBold md:items-center
-
             md:flex-row md:static md:opacity-100 md:max-h-none
             flex-col absolute left-0 right-0 top-16
             bg-[var(--white-color)] shadow-md md:shadow-none
@@ -86,9 +85,7 @@ const NavbarView = () => {
             </Link>
           </li>
           <li>
-            <button onClick={handleClick} className="font-medium cursor-pointer">
-              Projects
-            </button>
+            <Link to="/pastProjects">Past projects</Link>
           </li>
           <li>
             <Link to="/faq">FAQ's</Link>

@@ -2,9 +2,10 @@ import { createBrowserRouter } from "react-router-dom";
 import ArticlePage from "../pages/ArticlePage/ArticlePage";
 
 export const router = createBrowserRouter([
+  // --- Main Layout ---
   {
     path: "/",
-    lazy: () => import("../pages/Layout"),
+    lazy: () => import("../pages/mainLayout.jsx"),
     children: [
       {
         index: true,
@@ -20,11 +21,27 @@ export const router = createBrowserRouter([
       },
       {
         path: "accommodation",
-        lazy: () => import("../pages/Accommodation/AccommodationView.jsx")
+        lazy: () => import("../pages/Accommodation/AccommodationView.jsx"),
       },
       {
         path: "article",
         element: <ArticlePage />,
+      },
+    ],
+  },
+
+  // --- Admin Layout (osobny root!) ---
+  {
+    path: "/admin",
+    lazy: () => import("../pages/adminLayout.jsx"),
+    children: [
+      {
+        index: true,
+        lazy: () => import("../pages/AdminPanel/PanelView.jsx"),
+      },
+      {
+        path: "login",
+        lazy: () => import("../pages/AdminPanel/LoginView.jsx"),
       },
     ],
   },
