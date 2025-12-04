@@ -7,6 +7,5 @@ function AdminLayout() {
     </div>
   );
 }
-
 export { AdminLayout as Component };
 export default AdminLayout;
