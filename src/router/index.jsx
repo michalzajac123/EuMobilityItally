@@ -20,12 +20,12 @@ export const router = createBrowserRouter([
       },
       {
         path: "accommodation",
-        lazy: () => import("../pages/Accommodation/AccommodationView.jsx"),,
+        lazy: () => import("../pages/Accommodation/AccommodationView.jsx")
       },
       {
         path: "article",
         element: <ArticlePage />,
-      },,
+      },
     ],
   },
 ]);
