@@ -37,3 +37,18 @@ export function useAuthRedirect({mustBeLoggedIn }){
     })
   },[mustBeLoggedIn, navigate])
 }
+
+export async function getAdminData() {
+  const { data: { user }, error: userError } = await supabase.auth.getUser();
+  if (userError || !user) return { error: userError?.message || "Brak zalogowanego użytkownika" };
+
+  const { data, error } = await supabase
+    .from('admins')
+    .select('username, avatar_url')
+    .eq('user_id', user.id)
+    .single(); 
+
+  if (error) return { error: error.message };
+
+  return { data };
+}

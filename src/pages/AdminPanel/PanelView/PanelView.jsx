@@ -3,10 +3,11 @@ import fetchPosts from "../../../utils/store";
 import AdminDataView from "./AdminDataView";
 import PostList from "./PostList";
 import EditArticleView from "./EditArticleView";
-import { useAuthRedirect } from "../../../utils/supabase.js";
+import { useAuthRedirect, getAdminData } from "../../../utils/supabase.js";
 function PanelView() {
   const [posts, setPosts] = useState([]);
   const [selectedPost, setSelectedPost] = useState(null);
+  const [admin, setAdmin] = useState(null);
   useAuthRedirect({ mustBeLoggedIn: true });
 
   useEffect(() => {
@@ -15,6 +16,12 @@ function PanelView() {
       setPosts(postsData || []);
     }
     loadPosts();
+    getAdminData().then((res) =>{
+      console.log("dsa")
+      if(res.data) setAdmin(res.data)
+      else console.log("No admin data found");
+    }
+    );
   }, []);
   useEffect(() => {
     console.log("Posts loaded in PanelView:", selectedPost);
@@ -25,7 +32,7 @@ function PanelView() {
       {/* Sidebar */}
       <aside className="w-80 bg-white shadow-lg flex flex-col">
         {/* Admin Info */}
-        <AdminDataView />
+        {admin && <AdminDataView imgUrl={admin.avatar_url} name={admin.username}/>}
 
         {/* Posts List */}
         <PostList posts={posts} selectedPost={selectedPost} setSelectedPost={setSelectedPost}/>
