@@ -1,5 +1,6 @@
 import { createClient } from "@supabase/supabase-js";
-
+import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 export const supabase = createClient(
   import.meta.env.VITE_SUPABASE_URL,
   import.meta.env.VITE_SUPABASE_ANON_KEY
@@ -19,4 +20,20 @@ export async function login(email, password) {
 // ---- WYLOGOWANIE ----
 export async function logout() {
   await supabase.auth.signOut();
+}
+
+export function useAuthRedirect({mustBeLoggedIn }){
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    supabase.auth.getSession().then(({data}) => {
+      const logged = !!data.session
+      if (mustBeLoggedIn && !logged) {
+        navigate("/admin/login"); // NIEzalogowany → login
+      }
+      if (!mustBeLoggedIn && logged) {
+        navigate("/admin"); // NIEzalogowany → login
+      }
+    })
+  },[mustBeLoggedIn, navigate])
 }

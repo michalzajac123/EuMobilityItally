@@ -1,12 +1,14 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import fetchPosts from "../../../utils/store";
 import AdminDataView from "./AdminDataView";
 import PostList from "./PostList";
 import EditArticleView from "./EditArticleView";
-
+import { useAuthRedirect } from "../../../utils/supabase.js";
 function PanelView() {
   const [posts, setPosts] = useState([]);
   const [selectedPost, setSelectedPost] = useState(null);
+  useAuthRedirect({ mustBeLoggedIn: true });
+
   useEffect(() => {
     async function loadPosts() {
       const postsData = await fetchPosts();
@@ -17,6 +19,7 @@ function PanelView() {
   useEffect(() => {
     console.log("Posts loaded in PanelView:", selectedPost);
   }, [selectedPost]);
+
   return (
     <div className="min-h-screen bg-gray-50 flex">
       {/* Sidebar */}
