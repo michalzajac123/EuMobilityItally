@@ -8,8 +8,8 @@ export default function AdminDataView({imgUrl, name}) {
           className="w-full h-full object-cover"
         />
       </div>
-      <h3 className="text-xl font-bold text-gray-800 mb-1">Admin Panel</h3>
-      <p className="text-sm text-gray-500">{name}</p>
+      <h3 className="text-xl font-bold text-gray-800 mb-1">{name}</h3>
+      <p className="text-sm text-gray-500">Admin Panel</p>
     </div>
   );
 }
