@@ -10,9 +10,6 @@ export default function ProjectCard({ project, handleClick }) {
         <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
       </div>
       <div className="text-container p-5">
-        <p className="text-[#20b486] text-sm font-semibold uppercase tracking-wide mb-2">
-          Country
-        </p>
         <h3 className="text-2xl font-bold mb-3 text-gray-800">
           {project.title}
         </h3>
