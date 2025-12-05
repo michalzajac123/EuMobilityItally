@@ -68,6 +68,7 @@ const NavbarView = () => {
         >
           <li>
             <Link
+              onClick={() => setOpen(!open)}
               to="/"
               className="text-[var(--green-text-color)] font-semibold"
             >
@@ -75,22 +76,39 @@ const NavbarView = () => {
             </Link>
           </li>
           <li>
-            <Link to="/about" className="font-medium">
+            <Link
+              onClick={() => setOpen(!open)}
+              to="/about"
+              className="font-medium"
+            >
               About us
             </Link>
           </li>
           <li>
-            <Link to="/accommodation" className="font-medium">
+            <Link
+              onClick={() => setOpen(!open)}
+              to="/accommodation"
+              className="font-medium"
+            >
               Accommodation
             </Link>
           </li>
           <li>
-            <button onClick={handleClick} className="font-medium cursor-pointer">
+            <button
+              onClick={handleClick}
+              className="font-medium cursor-pointer"
+            >
               Projects
             </button>
           </li>
           <li>
-            <Link to="/faq">FAQ's</Link>
+            <Link
+              onClick={() => setOpen(!open)}
+              to="/faq"
+              className="font-medium"
+            >
+              FAQ's
+            </Link>
           </li>
 
           <button
