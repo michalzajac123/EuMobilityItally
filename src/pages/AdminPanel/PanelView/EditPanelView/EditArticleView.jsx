@@ -1,9 +1,4 @@
-import { useEffect } from "react";
-
-export default function EditArticleView({ selectedPost }) {
-  useEffect(() => {
-    console.log("Selected post in EditArticleView:", selectedPost);
-  }, [selectedPost]);
+export default function EditArticleView({ selectedPost, setSelectedPost, handleSave, handleDelete }) {
   return (
     <div className="max-w-4xl mx-auto">
       <div className="bg-white rounded-xl shadow-lg p-8">
@@ -16,6 +11,7 @@ export default function EditArticleView({ selectedPost }) {
               <input
                 type="text"
                 value={selectedPost.title}
+                onChange={(e)=>setSelectedPost({...selectedPost, title: e.target.value})}
                 className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[var(--green-text-color)] text-lg font-semibold"
               />
             </div>
@@ -26,6 +22,7 @@ export default function EditArticleView({ selectedPost }) {
               </label>
               <textarea
                 value={selectedPost.body}
+                onChange={(e)=>{setSelectedPost({...selectedPost, body: e.target.value})}}
                 rows="12"
                 className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[var(--green-text-color)] resize-none"
               />
@@ -54,10 +51,10 @@ export default function EditArticleView({ selectedPost }) {
             )}
 
             <div className="flex gap-4">
-              <button className="flex-1 bg-[var(--green-text-color)] hover:bg-[var(--green-text-hover)] text-white font-semibold py-3 rounded-lg transition">
+              <button onClick={handleSave} className="flex-1 bg-[var(--green-text-color)] hover:bg-[var(--green-text-hover)] text-white font-semibold py-3 rounded-lg transition">
                 Save Changes
               </button>
-              <button className="px-6 bg-red-500 hover:bg-red-600 text-white font-semibold py-3 rounded-lg transition">
+              <button onClick={handleDelete} className="px-6 bg-red-500 hover:bg-red-600 text-white font-semibold py-3 rounded-lg transition">
                 Delete
               </button>
             </div>
