@@ -1,6 +1,6 @@
 import { supabase } from "./supabase";
 
-export default async function fetchPosts() {
+export async function fetchPosts() {
   try {
     const { data, error } = await supabase
       .from("posts")
@@ -34,4 +34,19 @@ export async function fetchTestimonials({ setTestimonials, setLoading }) {
   }
   setTestimonials(data);
   setLoading(false);
+}
+export async function fetchMessages() {
+  try {
+    const { data, error } = await supabase
+      .from("messages")
+      .select("*")
+      .order("date", { ascending: false });
+    if (error) {
+      throw error;
+    }
+    console.log("Fetched messages:", data);
+    return data;
+  } catch (error) {
+    console.error("Error fetching messages:", error);
+  }
 }

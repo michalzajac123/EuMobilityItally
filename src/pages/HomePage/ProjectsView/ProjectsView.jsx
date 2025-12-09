@@ -1,5 +1,5 @@
 import ProjectCard from "./ProjectCard.jsx";
-import fetchPosts from "../../../utils/store";
+import {fetchPosts} from "../../../utils/store";
 import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 
