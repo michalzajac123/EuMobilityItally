@@ -4,6 +4,7 @@ import PostList from "./Lists/PostList.jsx";
 import { getAdminData } from "../../../../utils/supabase";
 import SideBarNav from "./components/SideBarNav.jsx";
 import MessagesList from "./Lists/MessagesList.jsx";
+import LogoutBtn from "./components/LogoutBtn.jsx";
 export default function SideBarView({
   admin,
   posts,
@@ -44,6 +45,7 @@ export default function SideBarView({
       )}
       {/* Messages list */}
       {activeSection === "messages" && <MessagesList messages={messages} onSelectMessage={onSelectMessage} selectedMessage={selectedMessage} />}
+      {activeSection === "settings" && <LogoutBtn/>}
     </aside>
   );
 }

@@ -32,7 +32,7 @@ function PanelView() {
       setMessages(messagesData || []);
       setPosts(postsData || []);
     }
-    loadData()
+    loadData();
 
     getAdminData().then((res) => {
       console.log("dsa");
@@ -99,8 +99,13 @@ function PanelView() {
         {activeSection === "posts" && (
           <EditArticleView selectedPost={selectedPost} setSelectedPost={setSelectedPost} handleSave={handleSave} handleDelete={handleDelete}/>
         )}
-        {activeSection === "messages" && <MessagesView selectedMessage={selectedMessage}/>}
+        {activeSection === "messages" && (
+          <MessagesView selectedMessage={selectedMessage} />
+        )}
       </section>
+      {activeSection === "settings" && (
+        <h1>fsdf</h1>
+      )}
     </div>
   );
 }

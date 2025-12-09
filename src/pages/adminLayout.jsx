@@ -17,7 +17,7 @@ function AdminLayout() {
   return (
     <div className="min-h-screen bg-gray-100 flex">
       
-      <main className="flex-1 p-6">
+      <main className="flex-1">
         <Outlet context={{ posts, selectedPost, setSelectedPost }} />
       </main>
     </div>
