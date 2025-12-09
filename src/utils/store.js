@@ -77,6 +77,27 @@ export async function updatePost(postId, updatedData) {
     console.error("Error updating post:", error);
   }
 }
+export async function sendMessage(messageData) {
+  const sender_name = messageData.name
+  const sender_email = messageData.email 
+  const content = messageData.content 
+  const subject = messageData.subject
+  try {
+    const { error } = await supabase.from("messages").insert({
+      sender_name,
+      sender_email,
+      content,
+      subject,
+      date: new Date().toISOString(),
+    });
+    if (error) {
+      throw error;
+    }
+    console.log("Message sent successfully:", messageData);
+  } catch (error) {
+    console.error("Error sending message:", error);
+  }
+}
 async function checkAuth() {
   const {
     data: { user },
