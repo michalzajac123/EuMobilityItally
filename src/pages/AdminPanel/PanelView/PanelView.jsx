@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import {fetchPosts, fetchMessages} from "../../../utils/store";
+import { fetchPosts, fetchMessages } from "../../../utils/store";
 import EditArticleView from "./EditPanelView/EditArticleView.jsx";
 import { useAuthRedirect, getAdminData } from "../../../utils/supabase.js";
 import SideBarView from "./SideBarView/SideBarView.jsx";
@@ -31,7 +31,7 @@ function PanelView() {
       setMessages(messagesData || []);
       setPosts(postsData || []);
     }
-    loadData()
+    loadData();
 
     getAdminData().then((res) => {
       console.log("dsa");
@@ -61,8 +61,13 @@ function PanelView() {
         {activeSection === "posts" && (
           <EditArticleView selectedPost={selectedPost} />
         )}
-        {activeSection === "messages" && <MessagesView selectedMessage={selectedMessage}/>}
+        {activeSection === "messages" && (
+          <MessagesView selectedMessage={selectedMessage} />
+        )}
       </section>
+      {activeSection === "settings" && (
+        <h1>fsdf</h1>
+      )}
     </div>
   );
 }
