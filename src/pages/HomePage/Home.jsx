@@ -3,6 +3,7 @@ import HeroView from "./HeroView/HeroView.jsx";
 import OurTeamView from "./OurTeamView/OutTeamView.jsx";
 import ProjectsView from "./ProjectsView/ProjectsView.jsx";
 import { useLocation } from "react-router-dom";
+import TestimonialsView from "./TestimationalsView/TestimonialsView.jsx";
 
 export function Component() {
   const location = useLocation();
@@ -32,6 +33,7 @@ export function Component() {
         <ProjectsView />
       </div>
       <OurTeamView />
+      <TestimonialsView />
     </div>
   );
 }

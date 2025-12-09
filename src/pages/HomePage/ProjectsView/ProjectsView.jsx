@@ -23,7 +23,10 @@ export default function PastProjectsView() {
   return (
     <div className="w-full bg-white">
       <div className="mx-auto max-w-6xl px-4 py-16 text-sm font-bold">
-        <div id="project-section" className="header-container justify-around flex flex-col text-center md:text-left">
+        <div
+          id="project-section"
+          className="header-container justify-around flex flex-col text-center md:text-left"
+        >
           <div className="text-[#20b486] mb-2">Explore our last projects</div>
           <div className="text-2xl mt-2 mb-4">Projects</div>
           <div className="font-thin text-[#667085] mb-6">

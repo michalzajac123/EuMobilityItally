@@ -26,3 +26,12 @@ export async function fetchHotels({ setHotels, setLoading }) {
   setLoading(false);
 }
 
+export async function fetchTestimonials({ setTestimonials, setLoading }) {
+  const { data, error } = await supabase.from("testimonials").select("*");
+  if (error) {
+    console.error("Error fetching testimationals:", error);
+    return [];
+  }
+  setTestimonials(data);
+  setLoading(false);
+}
