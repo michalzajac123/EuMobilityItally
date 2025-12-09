@@ -26,7 +26,7 @@ export default function SideBarView({
   }, [setAdmin]);
 
   return (
-    <aside className="w-80 bg-white shadow-lg flex flex-col">
+    <aside className="w-80 bg-white shadow-lg flex flex-col h-screen">
       {/* Admin Info */}
       {admin && (
         <AdminDataView imgUrl={admin.avatar_url} name={admin.username} />
