@@ -63,7 +63,7 @@ export default function SettingView() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 py-12">
+    <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 py-4">
       <div className="max-w-5xl mx-auto px-4">
         <div className="bg-white rounded-2xl shadow-xl overflow-hidden">
           {/* CONTACT FORM  */}
