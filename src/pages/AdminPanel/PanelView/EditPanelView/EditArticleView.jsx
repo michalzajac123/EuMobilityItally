@@ -1,4 +1,10 @@
-export default function EditArticleView({ selectedPost, setSelectedPost, handleSave, handleDelete }) {
+export default function EditArticleView({
+  selectedPost,
+  setSelectedPost,
+  handleSave,
+  handleDelete,
+  setNewImages,
+}) {
   return (
     <div className="max-w-4xl mx-auto">
       <div className="bg-white rounded-xl shadow-lg p-8">
@@ -11,7 +17,9 @@ export default function EditArticleView({ selectedPost, setSelectedPost, handleS
               <input
                 type="text"
                 value={selectedPost.title}
-                onChange={(e)=>setSelectedPost({...selectedPost, title: e.target.value})}
+                onChange={(e) =>
+                  setSelectedPost({ ...selectedPost, title: e.target.value })
+                }
                 className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[var(--green-text-color)] text-lg font-semibold"
               />
             </div>
@@ -22,7 +30,9 @@ export default function EditArticleView({ selectedPost, setSelectedPost, handleS
               </label>
               <textarea
                 value={selectedPost.body}
-                onChange={(e)=>{setSelectedPost({...selectedPost, body: e.target.value})}}
+                onChange={(e) => {
+                  setSelectedPost({ ...selectedPost, body: e.target.value });
+                }}
                 rows="12"
                 className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[var(--green-text-color)] resize-none"
               />
@@ -49,12 +59,44 @@ export default function EditArticleView({ selectedPost, setSelectedPost, handleS
                 </div>
               </div>
             )}
+            <label className="cursor-pointer inline-flex items-center gap-2 px-4 py-2 bg-gray-100 rounded-lg border mb-6">
+              <input
+                type="file"
+                accept="image/*"
+                multiple
+                className="hidden"
+                onChange={async (e) => {
+                  const files = Array.from(e.target.files || []);
+                  if (files.length === 0) return;
 
+                  // Tworzymy preview URL dla UI
+                  const previewUrls = files.map((file) =>
+                    URL.createObjectURL(file)
+                  );
+
+                  setSelectedPost({
+                    ...selectedPost,
+                    images: [...(selectedPost.images || []), ...previewUrls],
+                  });
+
+                  setNewImages((prevFiles) => [...(prevFiles || []), ...files]);
+
+                  e.target.value = null;
+                }}
+              />
+              <span>Dodaj zdjęcia</span>
+            </label>
             <div className="flex gap-4">
-              <button onClick={handleSave} className="flex-1 bg-[var(--green-text-color)] hover:bg-[var(--green-text-hover)] text-white font-semibold py-3 rounded-lg transition">
+              <button
+                onClick={handleSave}
+                className="flex-1 bg-[var(--green-text-color)] hover:bg-[var(--green-text-hover)] text-white font-semibold py-3 rounded-lg transition"
+              >
                 Save Changes
               </button>
-              <button onClick={handleDelete} className="px-6 bg-red-500 hover:bg-red-600 text-white font-semibold py-3 rounded-lg transition">
+              <button
+                onClick={handleDelete}
+                className="px-6 bg-red-500 hover:bg-red-600 text-white font-semibold py-3 rounded-lg transition"
+              >
                 Delete
               </button>
             </div>

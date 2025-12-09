@@ -79,7 +79,7 @@ export async function checkCurrentPassword(currentPassword) {
   if (userError || !user) {
     throw new Error(userError?.message || "Brak zalogowanego użytkownika");
   }
-  const { data, error } = await supabase.auth.signInWithPassword({
+  const { error } = await supabase.auth.signInWithPassword({
     email: user.email,
     password: currentPassword,
   });
