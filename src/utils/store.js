@@ -16,13 +16,23 @@ export async function fetchPosts() {
   }
 }
 
-export async function fetchHotels({ setHotels, setLoading }) {
+export async function fetchHotels({ setItems, setLoading }) {
   const { data, error } = await supabase.from("hotels").select("*");
   if (error) {
     console.error("Error fetching hotels:", error);
     return [];
   }
-  setHotels(data);
+  setItems(data);
+  setLoading(false);
+}
+
+export async function fetchCompanies({ setItems, setLoading }) {
+  const { data, error } = await supabase.from("companies").select("*");
+  if (error) {
+    console.error("Error fetching companies:", error);
+    return [];
+  }
+  setItems(data);
   setLoading(false);
 }
 
@@ -37,7 +47,7 @@ export async function fetchTestimonials({ setTestimonials, setLoading }) {
 }
 export async function fetchMessages() {
   try {
-    if(await checkAuth() === null) {
+    if ((await checkAuth()) === null) {
       throw new Error("User is not authenticated");
     }
     const { data, error } = await supabase
@@ -55,7 +65,7 @@ export async function fetchMessages() {
 }
 export async function deletePost(postId) {
   try {
-    if (await checkAuth() === null) {
+    if ((await checkAuth()) === null) {
       throw new Error("User is not authenticated");
     }
     const { error } = await supabase.from("posts").delete().eq("id", postId);
@@ -69,7 +79,7 @@ export async function deletePost(postId) {
 }
 export async function updatePost(postId, updatedData) {
   try {
-    if (await checkAuth() === null) {
+    if ((await checkAuth()) === null) {
       throw new Error("User is not authenticated");
     }
     await supabase
@@ -81,10 +91,10 @@ export async function updatePost(postId, updatedData) {
   }
 }
 export async function sendMessage(messageData) {
-  const sender_name = messageData.name
-  const sender_email = messageData.email 
-  const content = messageData.content 
-  const subject = messageData.subject
+  const sender_name = messageData.name;
+  const sender_email = messageData.email;
+  const content = messageData.content;
+  const subject = messageData.subject;
   try {
     const { error } = await supabase.from("messages").insert({
       sender_name,
@@ -103,10 +113,13 @@ export async function sendMessage(messageData) {
 }
 export async function deleteMessage(messageId) {
   try {
-    if (await checkAuth() === null) {
+    if ((await checkAuth()) === null) {
       throw new Error("User is not authenticated");
     }
-    const { error } = await supabase.from("messages").delete().eq("id", messageId);
+    const { error } = await supabase
+      .from("messages")
+      .delete()
+      .eq("id", messageId);
     if (error) {
       throw error;
     }

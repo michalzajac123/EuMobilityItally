@@ -20,17 +20,26 @@ export const router = createBrowserRouter([
         lazy: () => import("../pages/FAQPage/FAQView.jsx"),
       },
       {
-        path: "accommodation",
-        lazy: () => import("../pages/Accommodation/AccommodationView.jsx"),
-      },
-      {
         path: "article",
         element: <ArticlePage />,
       },
+      {
+        path: "accommodation",
+        lazy: () =>
+          import("../pages/Partners/Accommodation/AccommodationView.jsx"),
+      },
+      {
+        path: "companies",
+        lazy: () => import("../pages/Partners/Companies/CompaniesView.jsx"),
+      },
+      // {
+      //   path: "sponsors",
+      //   lazy: () => import("../pages/Partners/Sponsors/SponsorsView.js"),
+      // },
     ],
   },
 
-  // --- Admin Layout (osobny root!) ---
+  // --- Admin Layout ---
   {
     path: "/admin",
     lazy: () => import("../pages/adminLayout.jsx"),
