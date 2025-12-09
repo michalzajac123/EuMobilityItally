@@ -4,6 +4,7 @@ import EditArticleView from "./EditPanelView/EditArticleView.jsx";
 import { useAuthRedirect, getAdminData } from "../../../utils/supabase.js";
 import SideBarView from "./SideBarView/SideBarView.jsx";
 import MessagesView from "./EditPanelView/MessagesView.jsx";
+import SettingView from "./EditPanelView/SettingView.jsx";
 function PanelView() {
   const [posts, setPosts] = useState([]);
   const [selectedPost, setSelectedPost] = useState(null);
@@ -57,17 +58,15 @@ function PanelView() {
       />
 
       {/* Main Content - Editor */}
-      <section className="flex-1 p-8">
+      <section className="flex-1 p-8 overflow-scroll h-screen">
         {activeSection === "posts" && (
           <EditArticleView selectedPost={selectedPost} />
         )}
         {activeSection === "messages" && (
           <MessagesView selectedMessage={selectedMessage} />
         )}
+        {activeSection === "settings" && <SettingView />}
       </section>
-      {activeSection === "settings" && (
-        <h1>fsdf</h1>
-      )}
     </div>
   );
 }

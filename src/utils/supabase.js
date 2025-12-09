@@ -58,3 +58,33 @@ export async function getAdminData() {
 
   return { data };
 }
+
+export async function updatePassword(newPassword) {
+  const { data, error } = await supabase.auth.updateUser({
+    password: newPassword,
+  });
+
+  if (error) {
+    throw new Error(error.message);
+  }
+
+  return data;
+}
+
+export async function checkCurrentPassword(currentPassword) {
+  const {
+    data: { user },
+    error: userError,
+  } = await supabase.auth.getUser();
+  if (userError || !user) {
+    throw new Error(userError?.message || "Brak zalogowanego użytkownika");
+  }
+  const { data, error } = await supabase.auth.signInWithPassword({
+    email: user.email,
+    password: currentPassword,
+  });
+  if (error) {
+    throw new Error("Current password is incorrect");
+  }
+  return true;
+}
