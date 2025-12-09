@@ -75,15 +75,7 @@ const NavbarView = () => {
               Home
             </Link>
           </li>
-          <li>
-            <Link
-              onClick={() => setOpen(!open)}
-              to="/about"
-              className="font-medium"
-            >
-              About us
-            </Link>
-          </li>
+
           <li>
             <Link
               onClick={() => setOpen(!open)}
