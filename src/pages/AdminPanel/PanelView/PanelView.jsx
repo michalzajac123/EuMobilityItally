@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import {fetchPosts, fetchMessages, updatePost, deletePost} from "../../../utils/store";
+import {fetchPosts, fetchMessages, updatePost, deletePost,deleteMessage} from "../../../utils/store";
 import EditArticleView from "./EditPanelView/EditArticleView.jsx";
 import { useAuthRedirect, getAdminData } from "../../../utils/supabase.js";
 import SideBarView from "./SideBarView/SideBarView.jsx";
@@ -65,7 +65,7 @@ function PanelView() {
       alert("Failed to update the post. Please try again.");
     }
   }
-  const handleDelete = async () => {
+  const handleDeletePost = async () => {
     if(!selectedPost) return;
     const postId = selectedPost?.id;
     try {
@@ -76,6 +76,21 @@ function PanelView() {
     } catch (error) {
       console.error("Error deleting post:", error);
       alert("Failed to delete the post. Please try again.");
+    }
+  }
+  const handleDeleteMessage = async () => {
+    if(!selectedMessage) return;
+    const messageId = selectedMessage?.id;  
+    try {
+      
+      await deleteMessage(messageId);
+      setMessages((prevMessages) =>
+        prevMessages.filter((message) => message.id !== messageId)
+      );
+      setSelectedMessage(null);
+    } catch (error) {
+      console.error("Error deleting message:", error);
+      alert("Failed to delete the message. Please try again.");
     }
   }
   return (
@@ -97,10 +112,10 @@ function PanelView() {
       {/* Main Content - Editor */}
       <section className="flex-1 p-8 overflow-scroll h-screen">
         {activeSection === "posts" && (
-          <EditArticleView selectedPost={selectedPost} setSelectedPost={setSelectedPost} handleSave={handleSave} handleDelete={handleDelete}/>
+          <EditArticleView selectedPost={selectedPost} setSelectedPost={setSelectedPost} handleSave={handleSave} handleDelete={handleDeletePost}/>
         )}
         {activeSection === "messages" && (
-          <MessagesView selectedMessage={selectedMessage} />
+          <MessagesView selectedMessage={selectedMessage} onDelete={handleDeleteMessage}/>
         )}
         {activeSection === "settings" && <SettingView />}
       </section>

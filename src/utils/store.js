@@ -37,6 +37,9 @@ export async function fetchTestimonials({ setTestimonials, setLoading }) {
 }
 export async function fetchMessages() {
   try {
+    if(await checkAuth() === null) {
+      throw new Error("User is not authenticated");
+    }
     const { data, error } = await supabase
       .from("messages")
       .select("*")
@@ -96,6 +99,20 @@ export async function sendMessage(messageData) {
     console.log("Message sent successfully:", messageData);
   } catch (error) {
     console.error("Error sending message:", error);
+  }
+}
+export async function deleteMessage(messageId) {
+  try {
+    if (await checkAuth() === null) {
+      throw new Error("User is not authenticated");
+    }
+    const { error } = await supabase.from("messages").delete().eq("id", messageId);
+    if (error) {
+      throw error;
+    }
+    console.log(`Message with ID ${messageId} deleted successfully.`);
+  } catch (error) {
+    console.error("Error deleting message:", error);
   }
 }
 async function checkAuth() {
