@@ -37,7 +37,7 @@ export async function fetchTestimonials({ setTestimonials, setLoading }) {
 }
 export async function fetchMessages() {
   try {
-    if(await checkAuth() === null) {
+    if ((await checkAuth()) === null) {
       throw new Error("User is not authenticated");
     }
     const { data, error } = await supabase
@@ -55,7 +55,7 @@ export async function fetchMessages() {
 }
 export async function deletePost(postId) {
   try {
-    if (await checkAuth() === null) {
+    if ((await checkAuth()) === null) {
       throw new Error("User is not authenticated");
     }
     const { error } = await supabase.from("posts").delete().eq("id", postId);
@@ -69,22 +69,38 @@ export async function deletePost(postId) {
 }
 export async function updatePost(postId, updatedData) {
   try {
-    if (await checkAuth() === null) {
+    if ((await checkAuth()) === null) {
       throw new Error("User is not authenticated");
     }
-    await supabase
+
+    console.log("Updating post with data:", updatedData);
+
+    const { data, error } = await supabase
       .from("posts")
-      .update({ body: updatedData.body, title: updatedData.title })
-      .eq("id", postId);
+      .update({
+        body: updatedData.body,
+        title: updatedData.title,
+        images: updatedData.images, // Dodaj images!
+      })
+      .eq("id", postId)
+      .select();
+
+    if (error) {
+      throw error;
+    }
+
+    console.log("Post updated successfully:", data);
+    return data;
   } catch (error) {
     console.error("Error updating post:", error);
+    throw error;
   }
 }
 export async function sendMessage(messageData) {
-  const sender_name = messageData.name
-  const sender_email = messageData.email 
-  const content = messageData.content 
-  const subject = messageData.subject
+  const sender_name = messageData.name;
+  const sender_email = messageData.email;
+  const content = messageData.content;
+  const subject = messageData.subject;
   try {
     const { error } = await supabase.from("messages").insert({
       sender_name,
@@ -103,16 +119,51 @@ export async function sendMessage(messageData) {
 }
 export async function deleteMessage(messageId) {
   try {
-    if (await checkAuth() === null) {
+    if ((await checkAuth()) === null) {
       throw new Error("User is not authenticated");
     }
-    const { error } = await supabase.from("messages").delete().eq("id", messageId);
+    const { error } = await supabase
+      .from("messages")
+      .delete()
+      .eq("id", messageId);
     if (error) {
       throw error;
     }
     console.log(`Message with ID ${messageId} deleted successfully.`);
   } catch (error) {
     console.error("Error deleting message:", error);
+  }
+}
+export async function uploadImage(file) {
+  try {
+    if ((await checkAuth()) === null) {
+      throw new Error("User is not authenticated");
+    }
+
+    // Dodaj timestamp do nazwy pliku aby uniknąć duplikatów
+    const timestamp = Date.now();
+    const fileName = `${timestamp}-${file.name}`;
+    const path = `uploadedFiles/${fileName}`;
+
+    const { data, error } = await supabase.storage
+      .from("posts")
+      .upload(path, file);
+
+    if (error) {
+      throw error;
+    }
+
+    console.log("File uploaded:", data);
+
+    const { data: urlData } = supabase.storage
+      .from("posts")
+      .getPublicUrl(data.path);
+
+    console.log("Public URL:", urlData.publicUrl);
+    return urlData.publicUrl;
+  } catch (error) {
+    console.error("Error uploading image:", error);
+    return null;
   }
 }
 async function checkAuth() {

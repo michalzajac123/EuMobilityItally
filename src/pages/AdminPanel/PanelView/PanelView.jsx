@@ -1,5 +1,12 @@
 import { useState, useEffect } from "react";
-import {fetchPosts, fetchMessages, updatePost, deletePost,deleteMessage} from "../../../utils/store";
+import {
+  fetchPosts,
+  fetchMessages,
+  updatePost,
+  deletePost,
+  deleteMessage,
+  uploadImage,
+} from "../../../utils/store";
 import EditArticleView from "./EditPanelView/EditArticleView.jsx";
 import { useAuthRedirect, getAdminData } from "../../../utils/supabase.js";
 import SideBarView from "./SideBarView/SideBarView.jsx";
@@ -21,6 +28,7 @@ function PanelView() {
     },
   ]);
   const [selectedMessage, setSelectedMessage] = useState(null);
+  const [newImageFiles, setNewImageFiles] = useState([]);
 
   useAuthRedirect({ mustBeLoggedIn: true });
 
@@ -43,30 +51,63 @@ function PanelView() {
 
   const handleSave = async () => {
     if (!selectedPost) return;
-    console.log(selectedPost.id)
+    console.log("Saving post:", selectedPost.id);
+
     try {
-      console.log("Updating post with data:", {
+      const uploadedImageUrls = [];
+
+      if (newImageFiles && newImageFiles.length > 0) {
+        console.log("Uploading new images:", newImageFiles.length);
+
+        for (const file of newImageFiles) {
+          const uploadedUrl = await uploadImage(file);
+          uploadedImageUrls.push(uploadedUrl);
+          console.log("Uploaded image URL:", uploadedUrl);
+        }
+      }
+
+      const existingImageUrls = selectedPost.images.filter(
+        (img) => typeof img === "string" && img.startsWith("http")
+      );
+
+      const allImageUrls = [...existingImageUrls, ...uploadedImageUrls];
+      console.log("All image URLs to save:", allImageUrls);
+
+      const updateData = {
         title: selectedPost.title,
         body: selectedPost.body,
-      });
-      await updatePost(selectedPost.id, {
-        title: selectedPost.title,
-        body: selectedPost.body,
-      });
-      // Update the local posts state
+        images: allImageUrls,
+      };
+
+      console.log("Update data:", updateData);
+
+      await updatePost(selectedPost.id, updateData);
+
       setPosts((prevPosts) =>
         prevPosts.map((post) =>
-          post.id === selectedPost.id ? { ...post, ...selectedPost } : post
+          post.id === selectedPost.id
+            ? {
+                ...post,
+                title: selectedPost.title,
+                body: selectedPost.body,
+                images: allImageUrls,
+              }
+            : post
         )
       );
-      alert("Post updated successfully!");
+
+      // Wyczyść nowe pliki po zapisie
+      setNewImageFiles([]);
+
+      alert("Post saved successfully!");
     } catch (error) {
       console.error("Error updating post:", error);
       alert("Failed to update the post. Please try again.");
     }
-  }
+  };
+
   const handleDeletePost = async () => {
-    if(!selectedPost) return;
+    if (!selectedPost) return;
     const postId = selectedPost?.id;
     try {
       await deletePost(postId);
@@ -77,12 +118,11 @@ function PanelView() {
       console.error("Error deleting post:", error);
       alert("Failed to delete the post. Please try again.");
     }
-  }
+  };
   const handleDeleteMessage = async () => {
-    if(!selectedMessage) return;
-    const messageId = selectedMessage?.id;  
+    if (!selectedMessage) return;
+    const messageId = selectedMessage?.id;
     try {
-      
       await deleteMessage(messageId);
       setMessages((prevMessages) =>
         prevMessages.filter((message) => message.id !== messageId)
@@ -92,7 +132,7 @@ function PanelView() {
       console.error("Error deleting message:", error);
       alert("Failed to delete the message. Please try again.");
     }
-  }
+  };
   return (
     <div className="min-h-screen bg-gray-50 flex">
       {/* Sidebar */}
@@ -112,10 +152,19 @@ function PanelView() {
       {/* Main Content - Editor */}
       <section className="flex-1 p-8 overflow-scroll h-screen">
         {activeSection === "posts" && (
-          <EditArticleView selectedPost={selectedPost} setSelectedPost={setSelectedPost} handleSave={handleSave} handleDelete={handleDeletePost}/>
+          <EditArticleView
+            selectedPost={selectedPost}
+            setSelectedPost={setSelectedPost}
+            handleSave={handleSave}
+            handleDelete={handleDeletePost}
+            setNewImages={setNewImageFiles}
+          />
         )}
         {activeSection === "messages" && (
-          <MessagesView selectedMessage={selectedMessage} onDelete={handleDeleteMessage}/>
+          <MessagesView
+            selectedMessage={selectedMessage}
+            onDelete={handleDeleteMessage}
+          />
         )}
         {activeSection === "settings" && <SettingView />}
       </section>
