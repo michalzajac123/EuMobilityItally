@@ -59,4 +59,8 @@ export const router = createBrowserRouter([
       },
     ],
   },
+  {
+    path: "*",
+    lazy: () => import("../pages/NotFoundPage/NotFoundView.jsx"),
+  }
 ]);
