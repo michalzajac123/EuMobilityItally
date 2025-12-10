@@ -34,7 +34,7 @@ export const router = createBrowserRouter([
       },
       {
         path: "projects",
-        lazy: () => import("../pages/ProjectsPage/ProjectsPage.jsx"),
+        lazy: () => import("../pages/Projects/ProjectsPage.jsx"),
       },
       {
         path: "sponsors",
