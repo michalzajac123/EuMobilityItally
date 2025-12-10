@@ -29,6 +29,7 @@ function PanelView() {
   ]);
   const [selectedMessage, setSelectedMessage] = useState(null);
   const [newImageFiles, setNewImageFiles] = useState([]);
+  const [isMobileEditorOpen, setIsMobileEditorOpen] = useState(false);
 
   useAuthRedirect({ mustBeLoggedIn: true });
 
@@ -134,8 +135,8 @@ function PanelView() {
     }
   };
   return (
-    <div className="min-h-screen bg-gray-50 flex">
-      {/* Sidebar */}
+    <div className="min-h-screen bg-gray-50 flex h-screen overflow-hidden">
+      {/* Sidebar - główny widok na mobile, lewy panel na desktop */}
       <SideBarView
         admin={admin}
         posts={posts}
@@ -147,10 +148,48 @@ function PanelView() {
         messages={messages}
         selectedMessage={selectedMessage}
         onSelectMessage={setSelectedMessage}
+        setIsMobileEditorOpen={setIsMobileEditorOpen}
       />
 
-      {/* Main Content - Editor */}
-      <section className="flex-1 p-8 overflow-scroll h-screen">
+      {/* Main Content - wysuwany panel na mobile, normalny widok na desktop */}
+      <section
+        className={`
+          fixed md:relative
+          top-0 right-0
+          w-full md:flex-1
+          h-screen
+          bg-gray-50
+          p-4 md:p-8
+          overflow-y-auto
+          transition-transform duration-300
+          z-40
+          ${
+            isMobileEditorOpen
+              ? "translate-x-0"
+              : "translate-x-full md:translate-x-0"
+          }
+        `}
+      >
+        {/* Przycisk zamykania na mobile */}
+        <button
+          onClick={() => setIsMobileEditorOpen(false)}
+          className="md:hidden fixed top-4 right-4 z-50 bg-[var(--green-text-color)] hover:bg-[var(--green-text-hover)] text-white p-3 rounded-lg shadow-lg"
+        >
+          <svg
+            className="w-6 h-6"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth={2}
+              d="M6 18L18 6M6 6l12 12"
+            />
+          </svg>
+        </button>
+
         {activeSection === "posts" && (
           <EditArticleView
             selectedPost={selectedPost}
