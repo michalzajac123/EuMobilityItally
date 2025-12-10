@@ -46,7 +46,7 @@ export default function PartnersView({
       <div className="text-center mt-10">
         <button
           onClick={() => handleNavigateClick(navigate, "/contact")}
-          className="px-6 py-3 bg-[var(--green-text-color)] hover:bg-[var(--green-text-hover)] text-white rounded-lg font-medium transition"
+          className="px-6 py-3 cursor-pointer bg-[var(--green-text-color)] hover:bg-[var(--green-text-hover)] text-white rounded-lg font-medium transition"
         >
           Contact us for more details
         </button>
