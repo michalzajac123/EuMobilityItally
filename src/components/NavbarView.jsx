@@ -149,15 +149,6 @@ const NavbarView = () => {
                   Restaurants
                 </Link>
               </li>
-              <li>
-                <Link
-                  onClick={closeMenu}
-                  to="/sponsors"
-                  className="block px-3 py-2 text-gray-700 hover:text-[var(--green-text-color)] hover:bg-[var(--green-text-color)]/5 transition-colors font-medium text-sm md:rounded-lg md:mx-2 md:py-3 cursor-pointer"
-                >
-                  Sponsors
-                </Link>
-              </li>
             </ul>
           </li>
 
