@@ -36,6 +36,16 @@ export async function fetchCompanies({ setItems, setLoading }) {
   setLoading(false);
 }
 
+export async function fetchSponsors({ setItems, setLoading }) {
+  const { data, error } = await supabase.from("sponsors").select("*");
+  if (error) {
+    console.log("Error fetching sponsors:", error);
+    return [];
+  }
+  setItems(data);
+  setLoading(false);
+}
+
 export async function fetchTestimonials({ setTestimonials, setLoading }) {
   const { data, error } = await supabase.from("testimonials").select("*");
   if (error) {
