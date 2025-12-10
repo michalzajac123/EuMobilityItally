@@ -102,9 +102,17 @@ export async function updatePost(postId, updatedData) {
     if ((await checkAuth()) === null) {
       throw new Error("User is not authenticated");
     }
-
+    if(!postId){
+      await supabase.from("posts").insert({
+        body: updatedData.body,
+        title: updatedData.title,
+        images: updatedData.images, // Dodaj images!
+        created_at: new Date().toISOString(),
+      });
+      console.log("Post created successfully");
+      return;
+    }
     console.log("Updating post with data:", updatedData);
-
     const { data, error } = await supabase
       .from("posts")
       .update({

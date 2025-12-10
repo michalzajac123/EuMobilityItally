@@ -69,7 +69,6 @@ export default function EditArticleView({
                   const files = Array.from(e.target.files || []);
                   if (files.length === 0) return;
 
-                  // Tworzymy preview URL dla UI
                   const previewUrls = files.map((file) =>
                     URL.createObjectURL(file)
                   );

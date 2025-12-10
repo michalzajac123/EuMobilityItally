@@ -84,6 +84,14 @@ function PanelView() {
 
       await updatePost(selectedPost.id, updateData);
 
+      if(!selectedPost.id){
+        const postsData = await fetchPosts();
+        setPosts(postsData || []);
+        setSelectedPost(null);
+        setNewImageFiles([]);
+        alert("Post created successfully!");
+        return;
+      }
       setPosts((prevPosts) =>
         prevPosts.map((post) =>
           post.id === selectedPost.id
