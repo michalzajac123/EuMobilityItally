@@ -11,14 +11,7 @@ const NavbarView = () => {
   const [dropdownOpen, setDropdownOpen] = useState(false);
 
   const handleClick = () => {
-    if (location.pathname === "/") {
-      const projectsSection = document.getElementById("projects-section");
-      if (projectsSection) {
-        projectsSection.scrollIntoView({ behavior: "smooth", block: "start" });
-      }
-    } else {
-      navigate("/", { state: { scrollTo: "projects" } });
-    }
+    handleNavigateClick(navigate, "/projects", location);
     setOpen(false);
   };
 

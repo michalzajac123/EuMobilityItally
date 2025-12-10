@@ -1,5 +1,5 @@
 import ProjectCard from "./ProjectCard.jsx";
-import {fetchPosts} from "../../../utils/store";
+import { fetchPosts } from "../../../utils/store";
 import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 
@@ -34,11 +34,22 @@ export default function PastProjectsView() {
           </div>
         </div>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 justify-items-center">
-          {posts.map((project, index) => (
-            <div key={index} className="w-full max-w-sm">
-              <ProjectCard project={project} handleClick={handleClick} />
-            </div>
-          ))}
+          {posts.map(
+            (project, index) =>
+              index < 8 && (
+                <div key={index} className="w-full max-w-sm">
+                  <ProjectCard project={project} handleClick={handleClick} />
+                </div>
+              )
+          )}
+        </div>
+        <div className="flex justify-center mt-10">
+          <button
+            onClick={() => navigate("/projects")}
+            className="rounded-lg bg-white border-2 border-[var(--green-text-color)] px-6 py-3 font-semibold text-[var(--green-text-color)] hover:bg-[var(--green-text-hover)] hover:text-white cursor-pointer transition"
+          >
+            View All Projects
+          </button>
         </div>
       </div>
     </div>
