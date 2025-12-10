@@ -23,14 +23,14 @@ export function Component() {
         <div className="flex flex-col sm:flex-row gap-3 justify-center">
           <button
             onClick={() => navigate("/")}
-            className="flex items-center justify-center gap-2 px-6 py-3 bg-[var(--green-text-color)] text-white font-semibold rounded-lg hover:shadow-lg transition-all duration-200"
+            className="flex items-center justify-center gap-2 px-6 py-3 bg-[var(--green-text-color)] text-white font-semibold rounded-lg cursor-pointer hover:shadow-lg transition-all duration-200"
           >
             <FiHome size={20} />
             Home
           </button>
           <button
             onClick={() => navigate(-1)}
-            className="flex items-center justify-center gap-2 px-6 py-3 bg-gray-300 text-gray-900 font-semibold rounded-lg hover:bg-gray-400 transition-all duration-200"
+            className="flex items-center justify-center gap-2 px-6 py-3 bg-gray-300 text-gray-900 font-semibold rounded-lg cursor-pointer hover:bg-gray-400 transition-all duration-200"
           >
             <FiArrowLeft size={20} />
             Go Back
