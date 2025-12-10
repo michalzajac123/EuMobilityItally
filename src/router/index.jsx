@@ -36,7 +36,10 @@ export const router = createBrowserRouter([
         path: "sponsors",
         lazy: () => import("../pages/Partners/Sponsors/SponsorsView.jsx"),
       },
-
+      {
+        path: "restaurants",
+        lazy: () => import("../pages/Partners/Restaurants/RestaurantsView.jsx"),
+      },
     ],
   },
 
