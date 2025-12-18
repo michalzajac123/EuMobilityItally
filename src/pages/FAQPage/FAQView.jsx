@@ -9,11 +9,11 @@ export function Component() {
   const faqs = [
     {
       q: "What is EUB Mobility and Erasmus+?",
-      a: "EUB Mobility provides Erasmus+ funded internships in Italy — work experience, language practice, cultural growth.",
+      a: "EU Mobility provides Erasmus+ funded internships in Italy — work experience, language practice, cultural growth.",
     },
     {
       q: "Who can join?",
-      a: "Students and young people aged 16–30. No experience required — motivation is enough.",
+      a: "Students and young people aged 16–20. No experience required — motivation is enough.",
     },
     {
       q: "Do I pay for the internship?",
