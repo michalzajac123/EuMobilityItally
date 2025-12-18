@@ -8,7 +8,7 @@ export function Component() {
   }, []);
   const faqs = [
     {
-      q: "What is EUB Mobility and Erasmus+?",
+      q: "What is EU Mobility and Erasmus+?",
       a: "EU Mobility provides Erasmus+ funded internships in Italy — work experience, language practice, cultural growth.",
     },
     {
