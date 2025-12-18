@@ -1,4 +1,3 @@
-import Logo from "../assets/Images/EuMobilityNavbarLogo.png";
 import SocialIcons from "./SocialIcons";
 import { FaPhone, FaMapPin } from "react-icons/fa";
 import { IoMdMail } from "react-icons/io";
