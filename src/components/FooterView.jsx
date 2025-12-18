@@ -1,3 +1,4 @@
+import euMobilityLogo from "../assets/Images/euMobilityNavbarLogo.png";
 import SocialIcons from "./SocialIcons";
 import { FaPhone, FaMapPin } from "react-icons/fa";
 import { IoMdMail } from "react-icons/io";
@@ -7,6 +8,7 @@ export default function FooterView() {
     <div className="flex justify-between mx-auto mt-10">
       <div className="img flex bg-[#20b486] hidden md:flex items-center w-1/3 justify-center  p-4">
         <div className="image-container flex justify-center items-center">
+          <img src={euMobilityLogo} alt="Logo" className="w-60" />
         </div>
       </div>
       <div className="bg-white w-1/3 hidden md:block"></div>
