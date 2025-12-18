@@ -1,4 +1,4 @@
-import heroImage from "../../../assets/Images/heroImage.png";
+import hero from "../../../assets/Images/hero.jpeg";
 import erasmus from "../../../assets/Images/sponsorImage/erasmus.png";
 
 const HeroView = () => {
@@ -41,7 +41,7 @@ const HeroView = () => {
         <div className="hidden md:flex md:w-1/2 md:justify-center md:items-center">
           <div className="rounded-full overflow-hidden shadow-lg w-full max-w-sm">
             <img
-              src={heroImage}
+              src={hero}
               alt="Hero Graphic"
               className="w-full aspect-square object-cover"
             />
