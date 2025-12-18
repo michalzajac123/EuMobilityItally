@@ -8,11 +8,8 @@ const ContactDetails = ({ address = "example example", phone, email }) => {
     <div className="text-gray-700 text-sm leading-6">
       <p className="mb-6">
         <strong className="font-semibold text-base">Weekend UX</strong>
-        <br />B 37/3 Ground Floor Double Story
         <br />
-        Ramesh Nagar , Near Raja Garden
-        <br />
-        Chowk. Delhi: 110015
+        Via XII Ottobre, 1/Piano 6, 16121 Genova GE, Italy
       </p>
 
       <div className="space-y-4 mt-6">
@@ -38,7 +35,11 @@ const ContactDetails = ({ address = "example example", phone, email }) => {
           </div>
         )}
 
-        <GoogleMap location="Genua, Italy" zoom={18} setLoaded={setLoaded} />
+        <GoogleMap
+          location="Regus - Genova, De Ferrari"
+          zoom={18}
+          setLoaded={setLoaded}
+        />
       </div>
     </div>
   );

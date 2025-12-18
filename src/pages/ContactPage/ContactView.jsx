@@ -2,7 +2,6 @@ import ContactForm from "./ContactForm";
 import ContactDetails from "./ContactDetails";
 import { useEffect } from "react";
 export function Component() {
-  
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
@@ -20,9 +19,9 @@ export function Component() {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
           <ContactForm />
           <ContactDetails
-            phone="123 456 789"
-            email="example@example.com"
-            address="Genua, Italy"
+            phone="+39 351 412 6214"
+            email="ariela@eumobility.eu"
+            address="Via XII Ottobre, 1/Piano 6, 16121 Genova GE, Italy"
           />
         </div>
       </div>
