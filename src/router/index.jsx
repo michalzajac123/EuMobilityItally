@@ -46,7 +46,7 @@ export const router = createBrowserRouter([
 
   // --- Admin Layout ---
   {
-    path: "/admin",
+    path: "/admin/*",
     lazy: () => import("../pages/adminLayout.jsx"),
     children: [
       {
