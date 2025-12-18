@@ -1,9 +1,7 @@
 import heroImage from "../../../assets/Images/heroImage.png";
 import erasmus from "../../../assets/Images/sponsorImage/erasmus.png";
-import { useNavigate } from "react-router-dom";
 
 const HeroView = () => {
-  const navigate = useNavigate();
   const sponsorsList = [{ name: "Erasmus+", logo: erasmus }];
   return (
     <section className="w-full bg-white">
@@ -52,12 +50,6 @@ const HeroView = () => {
       </div>
       <div className="hidden lg:flex mx-auto max-w-6xl px-4 pb-16">
         <div className="flex items-center justify-start gap-8 flex-wrap w-full">
-          <button
-            onClick={() => navigate("/companies")}
-            className="rounded-lg bg-[var(--green-text-color)] px-6 py-3 font-semibold text-white hover:bg-[var(--green-text-hover)] cursor-pointer transition whitespace-nowrap"
-          >
-            Check all sponsors
-          </button>
           {sponsorsList.map((sponsor, index) => (
             <div key={index}>
               <img
