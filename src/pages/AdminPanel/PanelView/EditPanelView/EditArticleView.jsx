@@ -83,7 +83,7 @@ export default function EditArticleView({
                   e.target.value = null;
                 }}
               />
-              <span>Dodaj zdjęcia</span>
+              <span>Add photos</span>
             </label>
             <div className="flex gap-4">
               <button
