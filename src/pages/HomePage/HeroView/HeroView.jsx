@@ -1,19 +1,10 @@
 import heroImage from "../../../assets/Images/heroImage.png";
-import bilig from "../../../assets/Images/sponsorImage/billig.png";
-import ceraminAndMe from "../../../assets/Images/sponsorImage/ceraminAndMe.png";
-import ichaMochi from "../../../assets/Images/sponsorImage/ichaMochi.jpg";
-import forenom from "../../../assets/Images/sponsorImage/forenom.png";
-import bazar from "../../../assets/Images/sponsorImage/bazar.png";
 import erasmus from "../../../assets/Images/sponsorImage/erasmus.png";
+import { useNavigate } from "react-router-dom";
+
 const HeroView = () => {
-  const sponsorsList = [
-    { name: "Erasmus+", logo: erasmus },
-    { name: "Bilig", logo: bilig },
-    { name: "CeraminAndMe", logo: ceraminAndMe },
-    { name: "IchaMochi", logo: ichaMochi },
-    { name: "Forenom", logo: forenom },
-    { name: "Bazar", logo: bazar },
-  ]
+  const navigate = useNavigate();
+  const sponsorsList = [{ name: "Erasmus+", logo: erasmus }];
   return (
     <section className="w-full bg-white">
       <div className="mx-auto flex max-w-6xl flex-col items-center px-4 py-16 md:flex-row md:justify-between">
@@ -46,8 +37,6 @@ const HeroView = () => {
             Take part in international mobility projects in Italy. br Gain new
             skills, make global connections, and grow your future abroad.
           </p>
-
-       
         </div>
 
         {/* Prawa kolumna – znika na telefonach */}
@@ -63,7 +52,10 @@ const HeroView = () => {
       </div>
       <div className="hidden lg:flex mx-auto max-w-6xl px-4 pb-16">
         <div className="flex items-center justify-start gap-8 flex-wrap w-full">
-          <button className="rounded-lg bg-[var(--green-text-color)] px-6 py-3 font-semibold text-white hover:bg-[var(--green-text-hover)] cursor-pointer transition whitespace-nowrap">
+          <button
+            onClick={() => navigate("/companies")}
+            className="rounded-lg bg-[var(--green-text-color)] px-6 py-3 font-semibold text-white hover:bg-[var(--green-text-hover)] cursor-pointer transition whitespace-nowrap"
+          >
             Check all sponsors
           </button>
           {sponsorsList.map((sponsor, index) => (
